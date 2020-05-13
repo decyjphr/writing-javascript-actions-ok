@@ -1,0 +1,17 @@
+name: Repository visibility monitor
+on: 
+  # ONLY triggers on master branch
+  repository_dispatch:
+    types: [visibility-change]
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+    - id: hello
+      name: hello
+      uses: actions/hello-world-javascript-action@master
+      with: 
+        who-to-greet: 'Mona the Octocat'
+    - name: When greeted
+      run: echo 'Time greeted was ${{steps.hello.outputs.time}}'
